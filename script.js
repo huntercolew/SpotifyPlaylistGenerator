@@ -84,6 +84,10 @@ $( document ).ready(function() {
   }); // End of document.ready
 
 let createPlaylist = function(accessToken,userid) {
+  let x = document.getElementById("stateSelector");
+  // Will name the playlist after the state
+  const stateText = x.options[x.selectedIndex].text;
+  
     $.ajax({
       url: `https://api.spotify.com/v1/users/${userid}/playlists`,
       type: 'POST',
@@ -91,7 +95,7 @@ let createPlaylist = function(accessToken,userid) {
           'Authorization': 'Bearer ' + accessToken
       },
       data: JSON.stringify({
-        'name': 'Test Playlist',
+        'name':  stateText,
         'description': 'THIS IS A TEST',
         'public': false
       })
